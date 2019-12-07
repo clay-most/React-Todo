@@ -6,9 +6,14 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todo: ["learn class components","take over the world"]
+      todo: ["learn class components", "take over the world"]
     };
   }
+
+  addTask = newTask => {
+    this.setState({ todo: [...this.state.todo, newTask] });
+  };
+
   render() {
     return (
       <div>
@@ -16,7 +21,7 @@ class App extends React.Component {
           <h2>Welcome to your Todo App!</h2>
         </header>
         <section>
-          <TodoForm></TodoForm>
+          <TodoForm addTask={this.addTask}></TodoForm>
           <TodoList todo={this.state.todo}></TodoList>
         </section>
       </div>
