@@ -4,7 +4,7 @@ function TodoList(props) {
   return (
     <div>
       {props.todo.map(task => {
-        return <div key={task}>{task}</div>;
+        return <div key={task.id}>{task.text}</div>;
       })}
     </div>
   );

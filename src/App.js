@@ -6,13 +6,23 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todo: ["learn class components", "take over the world"]
+      todo: [
+        { text: "learn class components", id: 1, done: false },
+        { text: "take over the world", id: 2, done: false }
+      ]
     };
   }
 
-  addTask = newTask => {
+  addTask = text => {
+    const newTask = {
+      text: text,
+      id: Date.now,
+      done: false
+    };
     this.setState({ todo: [...this.state.todo, newTask] });
   };
+
+  toggleTask = event => {};
 
   render() {
     return (
