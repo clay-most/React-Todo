@@ -1,7 +1,7 @@
 import React from "react";
 import TodoForm from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
-import "./App.css"
+import "./App.css";
 
 class App extends React.Component {
   constructor() {
@@ -34,6 +34,14 @@ class App extends React.Component {
     });
   };
 
+  clearFinished = () => {
+    this.setState({
+      todo: this.state.todo.filter(task => {
+        return !task.done;
+      })
+    });
+  };
+
   render() {
     return (
       <div>
@@ -41,7 +49,7 @@ class App extends React.Component {
           <h2>Welcome to your Todo App!</h2>
         </header>
         <section>
-          <TodoForm addTask={this.addTask}></TodoForm>
+          <TodoForm addTask={this.addTask} clear={this.clearFinished}></TodoForm>
           <TodoList toggle={this.toggleTask} todo={this.state.todo}>
             {console.log(this.state.todo)}
           </TodoList>
