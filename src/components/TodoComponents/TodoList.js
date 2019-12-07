@@ -1,10 +1,13 @@
 import React from "react";
 
+import Task from "./Todo";
+
 function TodoList(props) {
   return (
     <div>
+      {console.log(props)}
       {props.todo.map(task => {
-        return <div key={task.id}>{task.text}</div>;
+        return <Task key={task.id} task={task} toggle={props.toggle}></Task>;
       })}
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import TodoForm from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
+import "./App.css"
 
 class App extends React.Component {
   constructor() {
@@ -22,7 +23,16 @@ class App extends React.Component {
     this.setState({ todo: [...this.state.todo, newTask] });
   };
 
-  toggleTask = event => {};
+  toggleTask = id => {
+    this.setState({
+      todo: this.state.todo.map(task => {
+        if (id === task.id) {
+          return { ...task, done: !task.done };
+        }
+        return task;
+      })
+    });
+  };
 
   render() {
     return (
@@ -32,7 +42,9 @@ class App extends React.Component {
         </header>
         <section>
           <TodoForm addTask={this.addTask}></TodoForm>
-          <TodoList todo={this.state.todo}></TodoList>
+          <TodoList toggle={this.toggleTask} todo={this.state.todo}>
+            {console.log(this.state.todo)}
+          </TodoList>
         </section>
       </div>
     );
